@@ -16,13 +16,13 @@ if (isset($_POST['submit'])) {
         exit(); //stop script from running
     } else {
         //check if input characters are valid
-        if (!preg_match("/^[a-zA-Z]*$/", $first) || !preg_match("/^[a-zA-Z]*$/", $last) || !preg_match("/^[a-zA-Z]*$/", $email) || !preg_match("/^[a-zA-Z]*$/", $uid) || !preg_match("/^[a-zA-Z]*$/", $pwd)) {
-            header("Location: ../signup.php?signup=niggarthiscodeisfuckinglegit!");
+        if (!preg_match("/^[a-zA-Z]*$/", $first) || !preg_match("/^[a-zA-Z]*$/", $last)) {
+            header("Location: ../signup.php?signup=invalidname");
             exit();
         } else {
             // check if email is valid
-            if(!filter_var($email, filter_validate_email)) {
-                header("Location: ../signup.php?signup=email");
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                header("Location: ../signup.php?signup=invalidemail");
                 exit();
             } else {
                 $sql = "SELECT * FROM users WHERE user_uid = '$uid'";
